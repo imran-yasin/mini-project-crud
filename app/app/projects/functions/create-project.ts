@@ -46,7 +46,6 @@ export async function createProject(
       const firstError = error.issues[0];
       return { success: false, error: firstError.message };
     }
-    console.error("Create project error:", error);
     return { success: false, error: "Failed to create project" };
   }
 }

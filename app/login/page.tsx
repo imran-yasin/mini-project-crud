@@ -23,9 +23,9 @@ export default async function LoginPage() {
       redirect("/app/projects");
     } catch (error) {
       if (error instanceof ZodError) {
-        console.error("Validation error:", error.issues[0].message);
+        return { error: error.issues[0].message };
       }
-      throw error;
+      return { error: "An unexpected error occurred" };
     }
   }
 

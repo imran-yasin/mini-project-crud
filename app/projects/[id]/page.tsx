@@ -30,8 +30,6 @@ export default async function ProjectDetailPage({ params }: Props) {
   const { id } = await params;
   const project = await getProject(id);
   const session = await getSession();
-  console.log("session", session);
-  console.log("project", project);
 
   if (!project) {
     notFound();
