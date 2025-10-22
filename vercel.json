@@ -1,0 +1,10 @@
+{
+  "buildCommand": "prisma generate && tsc --noEmit && next build",
+  "installCommand": "npm install",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD .",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "env": {
+    "PRISMA_GENERATE_SKIP_AUTOINSTALL": "true"
+  }
+}
