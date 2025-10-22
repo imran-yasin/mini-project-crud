@@ -4,9 +4,9 @@ import { requireAuth, clearSession } from "@/app/lib/auth";
 import prisma from "@/app/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import ProjectsList from "./list/ProjectsList";
-import CreateProjectButton from "./create/CreateProjectButton";
-import FiltersBar from "./list/FiltersBar";
+import ProjectsList from "./components/project-list";
+import CreateProjectButton from "./components/create-project-button";
+import FiltersBar from "./components/filter-bar";
 import type { Prisma } from "@/app/types";
 import { ProjectStatus } from "@/app/types";
 

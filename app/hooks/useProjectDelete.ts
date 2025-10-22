@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { deleteProject } from "@/app/app/projects/delete/actions";
+import { deleteProject } from "../app/projects/functions/delete-project";
 
 /**
  * Custom hook for managing project deletion with confirmation flow.

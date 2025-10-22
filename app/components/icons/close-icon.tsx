@@ -19,4 +19,3 @@ export default function CloseIcon({ className = "w-6 h-6" }: Props) {
     </svg>
   );
 }
-

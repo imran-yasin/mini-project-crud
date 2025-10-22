@@ -3,8 +3,8 @@
 import type { Project } from "@/app/types";
 import { getStatusColor, formatDateTime } from "@/app/utils";
 import { useProjectModal, useProjectDelete } from "@/app/hooks";
-import ProjectModal from "../edit/ProjectModal";
-import ConfirmModal from "@/app/components/ConfirmModal";
+import ProjectModal from "./project-modal";
+import ConfirmModal from "@/app/components/confirm-modal";
 import { FolderIcon, SpinnerIcon } from "@/app/components/icons";
 
 export default function ProjectsList({ projects }: { projects: Project[] }) {

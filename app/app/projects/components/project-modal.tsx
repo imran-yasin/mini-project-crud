@@ -4,7 +4,13 @@ import { useCallback } from "react";
 import type { Project } from "@/app/types";
 import { ProjectStatus } from "@/app/types";
 import { useProjectForm } from "@/app/hooks";
-import { CloseIcon } from "@/app/components/icons";
+import {
+  CloseIcon,
+  FilterIcon,
+  FolderIcon,
+  ClipboardIcon,
+  GlobeIcon,
+} from "@/app/components/icons";
 
 type Props = {
   project?: Project;
@@ -52,19 +58,24 @@ export default function ProjectModal({ project, onClose }: Props) {
               >
                 Project Name *
               </label>
-              <input
-                type="text"
-                id="name"
-                required
-                value={formData.name}
-                onChange={(e) => updateField("name", e.target.value)}
-                className={`w-full px-4 py-2 rounded-lg border ${
-                  validationErrors.name
-                    ? "border-red-500 focus:ring-red-500"
-                    : "border-gray-300 dark:border-gray-600 focus:ring-blue-500"
-                } bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:border-transparent`}
-                placeholder="Enter project name"
-              />
+              <div className="relative">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                  <FolderIcon className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  value={formData.name}
+                  onChange={(e) => updateField("name", e.target.value)}
+                  className={`w-full pl-10 pr-4 py-2 rounded-lg border ${
+                    validationErrors.name
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-300 dark:border-gray-600 focus:ring-blue-500"
+                  } bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:border-transparent`}
+                  placeholder="Enter project name"
+                />
+              </div>
               {validationErrors.name ? (
                 <p className="mt-1 text-xs text-red-600 dark:text-red-400">
                   {validationErrors.name}
@@ -83,18 +94,23 @@ export default function ProjectModal({ project, onClose }: Props) {
               >
                 Description
               </label>
-              <textarea
-                id="description"
-                rows={3}
-                value={formData.description}
-                onChange={(e) => updateField("description", e.target.value)}
-                className={`w-full px-4 py-2 rounded-lg border ${
-                  validationErrors.description
-                    ? "border-red-500 focus:ring-red-500"
-                    : "border-gray-300 dark:border-gray-600 focus:ring-blue-500"
-                } bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:border-transparent`}
-                placeholder="Enter project description"
-              />
+              <div className="relative">
+                <div className="absolute left-3 top-3 pointer-events-none">
+                  <ClipboardIcon className="h-5 w-5 text-gray-400" />
+                </div>
+                <textarea
+                  id="description"
+                  rows={3}
+                  value={formData.description}
+                  onChange={(e) => updateField("description", e.target.value)}
+                  className={`w-full pl-10 pr-4 py-2 rounded-lg border ${
+                    validationErrors.description
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-300 dark:border-gray-600 focus:ring-blue-500"
+                  } bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:border-transparent`}
+                  placeholder="Enter project description"
+                />
+              </div>
               {validationErrors.description && (
                 <p className="mt-1 text-xs text-red-600 dark:text-red-400">
                   {validationErrors.description}
@@ -109,22 +125,41 @@ export default function ProjectModal({ project, onClose }: Props) {
               >
                 Status *
               </label>
-              <select
-                id="status"
-                required
-                value={formData.status}
-                onChange={(e) =>
-                  updateField("status", e.target.value as ProjectStatus)
-                }
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value={ProjectStatus.PLANNED}>Planned</option>
-                <option value={ProjectStatus.ACTIVE}>Active</option>
-                <option value={ProjectStatus.DONE}>Done</option>
-              </select>
+              <div className="relative">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                  <FilterIcon className="h-5 w-5 text-gray-400" />
+                </div>
+                <select
+                  id="status"
+                  required
+                  value={formData.status}
+                  onChange={(e) =>
+                    updateField("status", e.target.value as ProjectStatus)
+                  }
+                  className="w-full pl-10 pr-10 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none cursor-pointer"
+                >
+                  <option value={ProjectStatus.PLANNED}>Planned</option>
+                  <option value={ProjectStatus.ACTIVE}>Active</option>
+                  <option value={ProjectStatus.DONE}>Done</option>
+                </select>
+                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                  <svg
+                    className="h-4 w-4 text-gray-400"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
 
-            <div className="flex items-center">
+            <div className="flex items-center gap-2 p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50">
               <input
                 type="checkbox"
                 id="isPublic"
@@ -132,9 +167,10 @@ export default function ProjectModal({ project, onClose }: Props) {
                 onChange={(e) => updateField("isPublic", e.target.checked)}
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
+              <GlobeIcon className="h-5 w-5 text-gray-400" />
               <label
                 htmlFor="isPublic"
-                className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="flex-1 text-sm font-medium text-gray-700 dark:text-gray-300 cursor-pointer"
               >
                 Make this project public
               </label>

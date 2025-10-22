@@ -1,7 +1,7 @@
 "use client";
 
 import { useProjectModal } from "@/app/hooks";
-import ProjectModal from "../edit/ProjectModal";
+import ProjectModal from "./project-modal";
 
 export default function CreateProjectButton() {
   const { isOpen, openCreate, close } = useProjectModal();
