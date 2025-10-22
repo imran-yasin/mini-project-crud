@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getSession } from "../lib/auth";
 import { getStatusColor } from "@/app/utils";
 
-export const revalidateValue = 60;
+export const revalidate = 60;
 
 async function getPublicProjects() {
   const cachedProjects = unstable_cache(
@@ -17,7 +17,7 @@ async function getPublicProjects() {
     ["public-projects"],
     {
       tags: ["projects:public"],
-      revalidate: revalidateValue,
+      revalidate: 60,
     }
   );
 
