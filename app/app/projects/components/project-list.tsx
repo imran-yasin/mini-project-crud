@@ -2,7 +2,7 @@
 
 import type { Project } from "@/app/types";
 import { getStatusColor, formatDateTime } from "@/app/utils";
-import { useProjectModal, useProjectDelete } from "@/app/hooks";
+import { useProjectModal, useProjectDelete } from "../hooks";
 import ProjectModal from "./project-modal";
 import ConfirmModal from "@/app/components/confirm-modal";
 import { FolderIcon, SpinnerIcon } from "@/app/components/icons";

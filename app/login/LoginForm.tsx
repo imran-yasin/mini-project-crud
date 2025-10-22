@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import {
   SpinnerIcon,
   AlertTriangleIcon,
-  GlobeIcon,
+  MailIcon,
 } from "@/app/components/icons";
 import { loginSchema } from "@/app/schemas";
 import { ZodError } from "zod";
@@ -87,7 +87,7 @@ export default function LoginForm({ action }: Props) {
         </label>
         <div className="relative">
           <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
-            <GlobeIcon className="h-5 w-5 text-gray-400" />
+            <MailIcon className="h-5 w-5 text-gray-400" />
           </div>
           <input
             type="email"

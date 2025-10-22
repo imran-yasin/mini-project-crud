@@ -20,13 +20,14 @@ export default async function LoginPage() {
       const validatedData = loginSchema.parse({ email });
 
       await setSession(validatedData.email);
-      redirect("/app/projects");
     } catch (error) {
       if (error instanceof ZodError) {
         return { error: error.issues[0].message };
       }
       return { error: "An unexpected error occurred" };
     }
+
+    redirect("/app/projects");
   }
 
   return (

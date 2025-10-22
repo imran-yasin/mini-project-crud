@@ -4,11 +4,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { projectFormSchema } from "@/app/schemas";
-import { useFormValidation } from "./useFormValidation";
+import { useFormValidation } from "@/app/hooks";
 import type { Project, ActionResult } from "@/app/types";
 import { ProjectStatus } from "@/app/types";
-import { createProject } from "../app/projects/functions/create-project";
-import { updateProject } from "../app/projects/functions/update-project";
+import { createProject } from "../functions/create-project";
+import { updateProject } from "../functions/update-project";
 
 /**
  * Custom hook for managing project form state and submission.
