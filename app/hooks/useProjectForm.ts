@@ -1,15 +1,41 @@
+"use client";
+
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { createProject, updateProject } from "@/app/lib/actions";
+import { createProject } from "@/app/app/projects/create/actions";
+import { updateProject } from "@/app/app/projects/edit/actions";
 import { projectFormSchema } from "@/app/schemas";
 import { useFormValidation } from "./useFormValidation";
-import type { Project, ProjectStatus, ActionResult } from "@/app/types";
+import type { Project, ActionResult } from "@/app/types";
+import { ProjectStatus } from "@/app/types";
+
+/**
+ * Custom hook for managing project form state and submission.
+
+ * Handles both CREATE and UPDATE operations:
+ * - CREATE: When project parameter is undefined
+ * - UPDATE: When project parameter is provided
+ *
+ * Features:
+ * - Form state management
+ * - Client-side validation with Zod
+ * - Server action calls (create/update)
+ * - Toast notifications
+ * - Loading states
+ * - Optimistic UI updates with router.refresh()
+ *
+ * @param project - Optional project data for edit mode. If undefined, form is in create mode
+ * @returns Project form utilities: formData, updateField, isSubmitting, validationErrors, handleSubmit
+ *
+ */
 
 export function useProjectForm(project?: Project) {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: project?.name || "",
     description: project?.description || "",
-    status: (project?.status || "PLANNED") as ProjectStatus,
+    status: project?.status || ProjectStatus.PLANNED,
     isPublic: project?.isPublic || false,
   });
 
@@ -49,9 +75,7 @@ export function useProjectForm(project?: Project) {
 
       if (result.success) {
         onSuccess?.();
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        router.refresh();
       } else {
         setIsSubmitting(false);
       }

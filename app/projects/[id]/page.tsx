@@ -66,13 +66,13 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <article className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-          <div className="p-8">
-            <div className="flex items-start justify-between mb-6">
-              <div className="flex-1">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+          <div className="p-4 sm:p-6 lg:p-8">
+            <div className="flex flex-col sm:flex-row items-start justify-between mb-4 sm:mb-6 gap-4">
+              <div className="flex-1 w-full">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
                   {project.name}
                 </h1>
-                <div className="flex gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-4">
                   <span
                     className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(
                       project.status
@@ -95,47 +95,47 @@ export default async function ProjectDetailPage({ params }: Props) {
             </div>
 
             {project.description && (
-              <div className="mb-6">
-                <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
+              <div className="mb-4 sm:mb-6">
+                <h2 className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
                   Description
                 </h2>
-                <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed whitespace-pre-wrap">
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
                   {project.description}
                 </p>
               </div>
             )}
 
-            <div className="border-t border-gray-200 dark:border-gray-700 pt-6 mt-6">
-              <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="border-t border-gray-200 dark:border-gray-700 pt-4 sm:pt-6 mt-4 sm:mt-6">
+              <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <dt className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
+                  <dt className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
                     Created By
                   </dt>
-                  <dd className="text-gray-900 dark:text-white">
+                  <dd className="text-sm sm:text-base text-gray-900 dark:text-white truncate">
                     {project.ownerEmail}
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
+                  <dt className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
                     Status
                   </dt>
-                  <dd className="text-gray-900 dark:text-white">
+                  <dd className="text-sm sm:text-base text-gray-900 dark:text-white">
                     {project.status}
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
+                  <dt className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
                     Created
                   </dt>
-                  <dd className="text-gray-900 dark:text-white">
+                  <dd className="text-sm sm:text-base text-gray-900 dark:text-white">
                     {formatDate(project.createdAt)}
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
+                  <dt className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
                     Last Updated
                   </dt>
-                  <dd className="text-gray-900 dark:text-white">
+                  <dd className="text-sm sm:text-base text-gray-900 dark:text-white">
                     {formatDate(project.updatedAt)}
                   </dd>
                 </div>

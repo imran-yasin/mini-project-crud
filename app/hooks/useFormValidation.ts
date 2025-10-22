@@ -1,6 +1,17 @@
 import { useState } from "react";
 import { ZodError, ZodType } from "zod";
 
+/**
+ * Custom hook for client-side form validation using Zod schemas.
+ *
+ * Provides real-time validation for form fields with detailed error messages.
+ * Validates entire form or individual fields on demand.
+ *
+ * @param schema - Zod schema for validation
+ * @returns Validation utilities with errors, validate, validateField, clearErrors, and hasErrors
+ *
+ */
+
 export function useFormValidation<T extends Record<string, unknown>>(
   schema: ZodType<T>
 ) {

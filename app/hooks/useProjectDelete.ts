@@ -1,10 +1,27 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { deleteProject } from "@/app/lib/actions";
+import { deleteProject } from "@/app/app/projects/delete/actions";
+
+/**
+ * Custom hook for managing project deletion with confirmation flow.
+ *
+ * Provides a two-step deletion process with confirmation modal:
+ * 1. User initiates delete (requestDelete)
+ * 2. Confirmation modal appears (showConfirmModal)
+ * 3. User confirms (confirmDelete) or cancels (cancelDelete)
+ * 4. Shows loading state during deletion (isDeleting)
+ * 5. Displays toast notifications for success/error
+ * 6. Refreshes data on success
+ *
+ * @returns Project deletion utilities: requestDelete, confirmDelete, cancelDelete, isDeleting, showConfirmModal
+ *
+ */
 
 export function useProjectDelete() {
+  const router = useRouter();
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
@@ -31,9 +48,8 @@ export function useProjectDelete() {
     const result = await deletePromise;
 
     if (result.success) {
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
+      router.refresh();
+      setDeletingId(null);
     } else {
       setDeletingId(null);
     }

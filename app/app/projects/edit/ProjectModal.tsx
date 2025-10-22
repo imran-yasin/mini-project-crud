@@ -1,7 +1,10 @@
 "use client";
 
-import type { Project, ProjectStatus } from "@/app/types";
+import { useCallback } from "react";
+import type { Project } from "@/app/types";
+import { ProjectStatus } from "@/app/types";
 import { useProjectForm } from "@/app/hooks";
+import { CloseIcon } from "@/app/components/icons";
 
 type Props = {
   project?: Project;
@@ -17,36 +20,27 @@ export default function ProjectModal({ project, onClose }: Props) {
     handleSubmit,
   } = useProjectForm(project);
 
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    handleSubmit(onClose);
-  };
+  const onSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      handleSubmit(onClose);
+    },
+    [handleSubmit, onClose]
+  );
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-2 sm:p-4 z-50">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-md w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+        <div className="p-4 sm:p-6">
+          <div className="flex justify-between items-center mb-4 sm:mb-6">
+            <h2 className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">
               {project ? "Edit Project" : "Create New Project"}
             </h2>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 p-1"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <CloseIcon className="w-6 h-6" />
             </button>
           </div>
 
@@ -124,9 +118,9 @@ export default function ProjectModal({ project, onClose }: Props) {
                 }
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
-                <option value="PLANNED">Planned</option>
-                <option value="ACTIVE">Active</option>
-                <option value="DONE">Done</option>
+                <option value={ProjectStatus.PLANNED}>Planned</option>
+                <option value={ProjectStatus.ACTIVE}>Active</option>
+                <option value={ProjectStatus.DONE}>Done</option>
               </select>
             </div>
 
